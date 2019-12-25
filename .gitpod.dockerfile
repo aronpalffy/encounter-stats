@@ -35,3 +35,8 @@ ENV PGDATABASE="postgres"
 # tasks from a Dockerfile. This workaround checks, on each bashrc eval, if the
 # PostgreSQL server is running, and if not starts it.
 RUN printf "\n# Auto-start PostgreSQL server.\n[[ \$(pg_ctl status | grep PID) ]] || pg_start > /dev/null\n" >> ~/.bashrc
+
+# install pip dependencies
+RUN pip3 install django \
+ && pip3 install django-heroku \
+ && pip3 install gunicorn
